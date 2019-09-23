@@ -8,7 +8,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(-5, 10, 10))
             {
-                Console.Write("Ошибка в NotNegativeInput X");
+                Console.Write("Error РІ NotNegativeInput X");
                 return false;
             }
             else
@@ -20,7 +20,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, -10, 10))
             {
-                Console.Write("Ошибка в NotNegativeInput Y");
+                Console.Write("Error РІ NotNegativeInput Y");
                 return false;
             }
             else
@@ -32,7 +32,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, 10, -10))
             {
-                Console.Write("Ошибка в NotNegativeInput Z");
+                Console.Write("Error РІ NotNegativeInput Z");
                 return false;
             }
             else
@@ -44,7 +44,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, 5, 10))
             {
-                Console.Write("Ошибка в NotLine 1");
+                Console.Write("Error РІ NotLine 1");
                 return false;
             }
             else
@@ -56,7 +56,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, 10, 5))
             {
-                Console.Write("Ошибка в NotLine 2");
+                Console.Write("Error РІ NotLine 2");
                 return false;
             }
             else
@@ -68,7 +68,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, 10, 5))
             {
-                Console.Write("Ошибка в NotLine 3");
+                Console.Write("Error РІ NotLine 3");
                 return false;
             }
             else
@@ -80,7 +80,7 @@ namespace _3Lab
         {
             if (!Triangle.CreateTriangle(5, 5, 5))
             {
-                Console.Write("Ошибка в CorrectEntries");
+                Console.Write("Error РІ CorrectEntries");
                 return false;
             }
             else
@@ -92,7 +92,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(0, 5, 5))
             {
-                Console.Write("Ошибка в ZeroInput");
+                Console.Write("Error РІ ZeroInput");
                 return false;
             }
             else
@@ -104,7 +104,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, 0, 5))
             {
-                Console.Write("Ошибка в ZeroInput");
+                Console.Write("Error РІ ZeroInput");
                 return false;
             }
             else
@@ -116,7 +116,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(5, 5, 0))
             {
-                Console.Write("Ошибка в ZeroInput");
+                Console.Write("Error РІ ZeroInput");
                 return false;
             }
             else
@@ -128,7 +128,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(10, 1, 1))
             {
-                Console.Write("Ошибка в LittleLines 1");
+                Console.Write("Error РІ LittleLines 1");
                 return false;
             }
             else
@@ -140,7 +140,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(1, 10, 1))
             {
-                Console.Write("Ошибка в LittleLines 2");
+                Console.Write("Error РІ LittleLines 2");
                 return false;
             }
             else
@@ -152,7 +152,7 @@ namespace _3Lab
         {
             if (Triangle.CreateTriangle(1, 1, 10))
             {
-                Console.Write("Ошибка в LittleLines 3");
+                Console.Write("Error РІ LittleLines 3");
                 return false;
             }
             else
