@@ -1,7 +1,0 @@
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\obj\Debug\3Lab.csprojAssemblyReference.cache
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\obj\Debug\3Lab.csproj.CoreCompileInputs.cache
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\bin\Debug\3Lab.exe.config
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\bin\Debug\3Lab.exe
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\bin\Debug\3Lab.pdb
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\obj\Debug\3Lab.exe
-C:\Non_system_files\Универ\Тестирование ПО\Software_Testing_1\3Lab\3Lab\3Lab\obj\Debug\3Lab.pdb
