@@ -1,167 +1,51 @@
 ﻿using System;
+using NUnit.Framework;
+
+namespace _3Lab.Tests
+{
+    [TestFixture]
+    public class CreateTriangleTests
+    {
+        [TestCase]
+        public void NotNegativeInput()
+        {
+            Assert.IsTrue(!Triangle.CreateTriangle(-5, 10, 10), "Error in NotNegativeInput X");
+            Assert.IsTrue(!Triangle.CreateTriangle(5, -10, 10), "Error in NotNegativeInput Y");
+            Assert.IsTrue(!Triangle.CreateTriangle(5, 10, -10), "Error in NotNegativeInput Z");
+        }
+        [TestCase]
+        public void NotLine()
+        {
+            Assert.IsTrue(!Triangle.CreateTriangle(5, 5, 10), "Error in NotLine 1");
+            Assert.IsTrue(!Triangle.CreateTriangle(5, 10, 5), "Error in NotLine 2");
+            Assert.IsTrue(!Triangle.CreateTriangle(10, 5, 5), "Error in NotLine 3");
+        }
+        [TestCase]
+        public void CorrectEntries()
+        {
+            Assert.IsTrue(Triangle.CreateTriangle(5, 5, 5), "Error in CorrectEntries");
+            Assert.IsTrue(Triangle.CreateTriangle(5, 6, 7), "Error in CorrectEntries");
+            Assert.IsTrue(Triangle.CreateTriangle(5, 10, 10), "Error in CorrectEntries");
+        }
+        [TestCase]
+        public void ZeroInput()
+        {
+            Assert.IsTrue(!Triangle.CreateTriangle(0, 5, 5), "Error in ZeroInput X");
+            Assert.IsTrue(!Triangle.CreateTriangle(5, 0, 5), "Error in ZeroInput Y");
+            Assert.IsTrue(!Triangle.CreateTriangle(5, 5, 0), "Error in ZeroInput Z");
+        }
+        [TestCase]
+        public void AreEnoughLineLengths()
+        {
+            Assert.IsTrue(!Triangle.CreateTriangle(10, 1, 1), "Error in AreEnoughLineLengths 1");
+            Assert.IsTrue(!Triangle.CreateTriangle(1, 10, 1), "Error in AreEnoughLineLengths 2");
+            Assert.IsTrue(!Triangle.CreateTriangle(1, 1, 10), "Error in AreEnoughLineLengths 3");
+        }
+    }
+}
 
 namespace _3Lab
 {
-    public static class Tests
-    {
-        public static bool NotNegativeInputX()
-        {
-            if (Triangle.CreateTriangle(-5, 10, 10))
-            {
-                Console.Write("Error in NotNegativeInput X");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool NotNegativeInputY()
-        {
-            if (Triangle.CreateTriangle(5, -10, 10))
-            {
-                Console.Write("Error in NotNegativeInput Y");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool NotNegativeInputZ()
-        {
-            if (Triangle.CreateTriangle(5, 10, -10))
-            {
-                Console.Write("Error in NotNegativeInput Z");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool NotLine1()
-        {
-            if (Triangle.CreateTriangle(5, 5, 10))
-            {
-                Console.Write("Error in NotLine 1");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool NotLine2()
-        {
-            if (Triangle.CreateTriangle(5, 10, 5))
-            {
-                Console.Write("Error in NotLine 2");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool NotLine3()
-        {
-            if (Triangle.CreateTriangle(5, 10, 5))
-            {
-                Console.Write("Error in NotLine 3");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool CorrectEntries()
-        {
-            if (!Triangle.CreateTriangle(5, 5, 5))
-            {
-                Console.Write("Error in CorrectEntries");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool ZeroInputX()
-        {
-            if (Triangle.CreateTriangle(0, 5, 5))
-            {
-                Console.Write("Error in ZeroInput");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool ZeroInputY()
-        {
-            if (Triangle.CreateTriangle(5, 0, 5))
-            {
-                Console.Write("Error in ZeroInput");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool ZeroInputZ()
-        {
-            if (Triangle.CreateTriangle(5, 5, 0))
-            {
-                Console.Write("Error in ZeroInput");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool LittleLines1()
-        {
-            if (Triangle.CreateTriangle(10, 1, 1))
-            {
-                Console.Write("Error in LittleLines 1");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool LittleLines2()
-        {
-            if (Triangle.CreateTriangle(1, 10, 1))
-            {
-                Console.Write("Error in LittleLines 2");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool LittleLines3()
-        {
-            if (Triangle.CreateTriangle(1, 1, 10))
-            {
-                Console.Write("Error in LittleLines 3");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-    }
-
     public static class Triangle
     {
         public static bool CreateTriangle(double x, double y, double z)
@@ -170,29 +54,13 @@ namespace _3Lab
                 return true;
             else
                 return false;
-
         }
     }
-
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Test #1 - " + Tests.NotNegativeInputX());
-            Console.WriteLine("Test #2 - " + Tests.NotNegativeInputY());
-            Console.WriteLine("Test #3 - " + Tests.NotNegativeInputZ());
-            Console.WriteLine("Test #4 - " + Tests.NotLine1()); 
-            Console.WriteLine("Test #5 - " + Tests.NotLine2()); 
-            Console.WriteLine("Test #6 - " + Tests.NotLine3()); 
-            Console.WriteLine("Test #7 - " + Tests.CorrectEntries()); 
-            Console.WriteLine("Test #8 - " + Tests.ZeroInputX()); 
-            Console.WriteLine("Test #9 - " + Tests.ZeroInputY()); 
-            Console.WriteLine("Test #10 - " + Tests.ZeroInputZ()); 
-            Console.WriteLine("Test #11 - " + Tests.LittleLines1()); 
-            Console.WriteLine("Test #12 - " + Tests.LittleLines2()); 
-            Console.WriteLine("Test #13 - " + Tests.LittleLines3()); 
-
-            Console.ReadLine();
+         
         }
     }
 }
