@@ -50,10 +50,7 @@ namespace _3Lab
     {
         public static bool CreateTriangle(double x, double y, double z)
         {
-            if (((x + y) > z) && ((x + z) > y) && ((z + y) > x))
-                return true;
-            else
-                return false;
+            return ((((x + y) > z) && ((x + z) > y) && ((z + y) > x)));
         }
     }
     class Program
