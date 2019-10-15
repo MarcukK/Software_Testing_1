@@ -33,26 +33,5 @@ namespace AircompanyTests.Tests
             Airport airport = new Airport(planes);
             Assert.IsTrue(airport.GetTransportMilitaryPlanes().ToList().Count > 0);
         }
-
-        // зачем проверять работу linq? я бы просто удалил этот кусок кода 
-        [Test]
-        public void NextPlaneMaxLoadCapacityIsHigherThanCurrent()
-        {
-            Airport airport = new Airport(planes);
-            List<Plane> planesSortedByMaxLoadCapacity = airport.SortByMaxLoadCapacity().GetPlanes().ToList();
-
-            bool nextPlaneMaxLoadCapacityIsHigherThanCurrent = true;
-            for (int i = 0; i < planesSortedByMaxLoadCapacity.Count - 1; i++)
-            {
-                Plane currentPlane = planesSortedByMaxLoadCapacity[i];
-                Plane nextPlane = planesSortedByMaxLoadCapacity[i + 1];
-                if (currentPlane.GetMAXLoadCapacity() > nextPlane.GetMAXLoadCapacity())
-                {
-                    nextPlaneMaxLoadCapacityIsHigherThanCurrent = false;
-                }
-            }
-
-            Assert.IsTrue(nextPlaneMaxLoadCapacityIsHigherThanCurrent);
-        }
     }
 }
