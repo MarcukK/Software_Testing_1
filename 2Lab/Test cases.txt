@@ -1,6 +1,6 @@
 https://www.austrian.com
 
-1.Бронь в город отправления №1
+1.One-way reservation to departure city №1
 ШАГИ
 Зайти на сайт www.austrian.com
 Ввести в поле "Откуда" - "Минск"
@@ -11,7 +11,7 @@ https://www.austrian.com
 Site will be navigated to search result page with the message "К сожалению, бронирование билетов Round the 
 world здесь не производится. Обратитесь ..."
 
-2.Бронь в город отправления №2
+2.Two-way reservation to departure city №2
 ШАГИ
 Зайти на сайт www.austrian.com
 Ввести в поле "Откуда" - "Минск"
@@ -100,7 +100,7 @@ Site will be navigated to search result page с доступными рейсами
 Зайти на сайт www.austrian.com
 Ввести в поле "Откуда" - "Минск"
 Ввести в поле "Куда" - Париж"
-Выбрать дату завтрашнего дня
+//Выбрать дату завтрашнего дня
 Нажать на радиокнопку "Билет туда и обратно"
 Нажать на кнопку "Поиск перелёта"
 *Site will be navigated to search result page с доступными рейсами

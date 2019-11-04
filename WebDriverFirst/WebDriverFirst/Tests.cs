@@ -16,12 +16,13 @@ namespace WebDriverFirst
     [TestFixture]
     public class Tests
     {
-        public static int timeoutInSeconds = 30;
+        private static int timeoutInSeconds = 30;
+        private IWebDriver DriverBookingWithoutDate;
         private IWebDriver DriverBookingWithoutDestination;
         private IWebDriver DriverOneWayReservationToDepartureCity;
         private IWebDriver DriverTwoWayReservationToDepartureCity;
-        public string WebsiteURL;
-        public string InitialURL;
+        private string WebsiteURL;
+        private string InitialURL;
         Random rand = new Random();
 
         [Obsolete]
@@ -31,7 +32,7 @@ namespace WebDriverFirst
                 .Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(by)));
         }
 
-        public DefaultWait<IWebDriver> GetFluentWait(IWebDriver driver)
+        public static DefaultWait<IWebDriver> GetFluentWait(IWebDriver driver)
         {
             DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(50);
@@ -49,16 +50,22 @@ namespace WebDriverFirst
         [Test, Description("Test is not complete")]
         public void BookingWithoutDate()
         {
-            DriverBookingWithoutDestination = new ChromeDriver();
+            DriverBookingWithoutDate = new ChromeDriver();
 
-            DriverBookingWithoutDestination.Navigate().GoToUrl(WebsiteURL);
+            DriverBookingWithoutDate.Navigate().GoToUrl(WebsiteURL);
 
-            DefaultWait<IWebDriver> fluentWait = GetFluentWait(DriverBookingWithoutDestination);
+            DefaultWait<IWebDriver> fluentWait = GetFluentWait(DriverBookingWithoutDate);
 
-            IWebElement SubmitBookingButton = fluentWait.Until(x => x.FindElement(By.XPath("//div[1]/section[4]/div/div/form/div[4]/button")));
+            IWebElement AirportInputFieldFrom = DriverBookingWithoutDate.FindElement(By.CssSelector(".sf-input.location1.ui-autocomplete-input"));
+            AirportInputFieldFrom.SendKeys("Минск");
+
+            IWebElement AirportInputFieldTo = DriverBookingWithoutDate.FindElement(By.CssSelector(".sf-input.location2.ui-autocomplete-input"));
+            AirportInputFieldTo.SendKeys("Париж");
+
+            IWebElement SubmitBookingButton = fluentWait.Until(x => x.FindElement(By.CssSelector(".search_button.button_orange.button_middle")));
             SubmitBookingButton.Click();
 
-            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//div[1]/section[4]/div/div/form/div[2]/div[3]/div/div[1]/span")));
+            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Укажите дату')]")));
             Assert.IsTrue(TestWebSiteResult != null, "Error in BookingWithoutWay");
 
         }
@@ -72,18 +79,21 @@ namespace WebDriverFirst
 
             DefaultWait<IWebDriver> fluentWait = GetFluentWait(DriverBookingWithoutDestination);
 
-            IWebElement SelectFromDateElement = DriverBookingWithoutDestination.FindElement(By.XPath("//div[1]/section[4]/div/div/form/div[2]/div[3]/div/input[1]"));
+            IWebElement AirportInputFieldFrom = DriverBookingWithoutDestination.FindElement(By.CssSelector(".sf-input.location1.ui-autocomplete-input"));
+            AirportInputFieldFrom.SendKeys("Минск");
+
+            IWebElement SelectFromDateElement = DriverBookingWithoutDestination.FindElement(By.CssSelector(".sf-input.date-text.date1text.hasDatepicker"));
             SelectFromDateElement.Click();
-            SelectFromDateElement = DriverBookingWithoutDestination.FindElement(By.XPath("//div[14]/div[2]/a[2]"));
+            SelectFromDateElement = DriverBookingWithoutDestination.FindElement(By.CssSelector(".ui-datepicker-next.ui-corner-all"));
             SelectFromDateElement.Click();
-            SelectFromDateElement = DriverBookingWithoutDestination.FindElement(By.XPath("//div[14]/table/tbody/tr[1]/td[7]/a"));
+            SelectFromDateElement = DriverBookingWithoutDestination.FindElement(By.CssSelector(".ui-datepicker-week-end.date_2019-12-01"));
             SelectFromDateElement.Click();
             while (SelectFromDateElement.Displayed) ;
 
-            IWebElement SubmitBookingButton = fluentWait.Until(x => x.FindElement(By.XPath("//div[1]/section[4]/div/div/form/div[4]/button")));
+            IWebElement SubmitBookingButton = fluentWait.Until(x => x.FindElement(By.CssSelector(".search_button.button_orange.button_middle")));
             SubmitBookingButton.Click();
 
-            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//div[1]/section[4]/div/div/form/div[2]/div[3]/div/div[1]/span")));
+            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Укажите город назначения')]")));
             Assert.IsTrue(TestWebSiteResult != null, "Error in BookingWithoutDestination");
 
         }
@@ -114,7 +124,7 @@ namespace WebDriverFirst
             IWebElement SubmitBookingButton = fluentWait.Until(x => x.FindElement(By.CssSelector(".search_button.button_orange.button_middle")));
             SubmitBookingButton.Click();
 
-            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.CssSelector(".error-label.tabbed")));
+            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Не может совпадать с пунктом отправления')]")));
             Assert.IsTrue(TestWebSiteResult != null, "Error in OneWayReservationToDepartureCity");
         }
 
@@ -153,21 +163,21 @@ namespace WebDriverFirst
             IWebElement SubmitBookingButton = fluentWait.Until(x => x.FindElement(By.CssSelector(".search_button.button_orange.button_middle")));
             SubmitBookingButton.Click();
 
-            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.CssSelector(".error-label.tabbed")));
-            Assert.IsTrue(TestWebSiteResult != null, "Error in AirortChoice");
+            IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Не может совпадать с пунктом отправления')]")));
+            Assert.IsTrue(TestWebSiteResult != null, "TwoWayReservationToDepartureCity");
         }
 
         [TearDown]
         public void TearDownTest()
         {
+            if (DriverBookingWithoutDate != null)
+                DriverBookingWithoutDate.Quit();
             if (DriverBookingWithoutDestination != null)
                 DriverBookingWithoutDestination.Quit();
             if (DriverOneWayReservationToDepartureCity != null)
                 DriverOneWayReservationToDepartureCity.Quit();
             if (DriverTwoWayReservationToDepartureCity != null)
                 DriverTwoWayReservationToDepartureCity.Quit();
-
-
             
         }
     }
