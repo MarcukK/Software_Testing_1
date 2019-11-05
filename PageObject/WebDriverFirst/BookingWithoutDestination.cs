@@ -34,15 +34,8 @@ namespace PageObject
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Не может совпадать с пунктом отправления')]")]
         private readonly IWebElement ArrivalCannotCoincideWithDepartureErrorLabel;
 
-
-
         [Obsolete]
-        public BookingWithoutDestination(IWebDriver driver)
-        {
-            fluentWait = GetFluentWait(driver);
-            PageFactory.InitElements(driver, this);
-            this.driver = driver;
-        }
+        public BookingWithoutDestination(IWebDriver driver) : base(driver) { }
 
         public BookingWithoutDestination FillFieldFrom(string text)
         {

@@ -13,47 +13,8 @@ using OpenQA.Selenium.Support.UI;
 
 namespace PageObject
 {
-    public class Page
-    {
-        protected static String URL_MATCH = "https://biletyplus.by/";
-
-        protected DefaultWait<IWebDriver> fluentWait;
-        protected IWebDriver driver;
-        protected static int timeoutInSeconds = 30;
-        protected readonly IWebElement AirportInputFieldFrom;
-        protected readonly IWebElement AirportInputFieldTo;
-        protected readonly IWebElement SelectFromDateElement;
-        protected readonly IWebElement ChangeMonthElement;
-        protected readonly IWebElement SelectFromDateElementDate;
-        protected readonly IWebElement SelectToDateElement;
-        protected readonly IWebElement SelectToDateElementDate;
-        protected readonly IWebElement SubmitBookingButton;
-
-        private static ReadOnlyCollection<IWebElement> WaitForElement(IWebDriver webDriver, By by)
-        {
-            return (new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeoutInSeconds))
-                .Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(by)));
-        }
-
-        public static DefaultWait<IWebDriver> GetFluentWait(IWebDriver driver)
-        {
-            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
-            fluentWait.Timeout = TimeSpan.FromSeconds(50);
-            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(250);
-            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            return fluentWait;
-        }
-    }
-
- 
-
     class TwoWayReservationToDepartureCityPage : Page
     {
-
-        private DefaultWait<IWebDriver> fluentWait;
-        private IWebDriver driver;
-        private static int timeoutInSeconds = 30;
-
         [FindsBy(How = How.CssSelector, Using = ".sf-input.location1.ui-autocomplete-input")]
         private readonly IWebElement AirportInputFieldFrom;
 
@@ -82,14 +43,8 @@ namespace PageObject
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Укажите город назначения')]")]
         private readonly IWebElement ArrivalCannotCoincideWithDepartureErrorLabel;
 
-        [Obsolete]
-        public TwoWayReservationToDepartureCityPage(IWebDriver driver)
-        {
-            fluentWait = GetFluentWait(driver);
-            PageFactory.InitElements(driver, this);
-            this.driver = driver;
-        }
-
+        public TwoWayReservationToDepartureCityPage(IWebDriver driver) : base(driver) { }
+        
         public TwoWayReservationToDepartureCityPage FillFieldFrom(string text)
         {
             AirportInputFieldFrom.SendKeys(text);
