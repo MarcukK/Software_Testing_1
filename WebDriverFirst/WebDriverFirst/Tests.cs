@@ -16,6 +16,7 @@ namespace WebDriverFirst
     [TestFixture]
     public class Tests
     {
+        private IWebDriver driver;
         private static int timeoutInSeconds = 30;
         private IWebDriver DriverBookingWithoutDate;
         private IWebDriver DriverBookingWithoutDestination;
@@ -44,13 +45,14 @@ namespace WebDriverFirst
         [SetUp]
         public void SetupTest()
         {
+            driver = new ChromeDriver();
             WebsiteURL = "https://biletyplus.by/";
         }
 
         [Test, Description("Test is not complete")]
         public void BookingWithoutDate()
         {
-            DriverBookingWithoutDate = new ChromeDriver();
+            DriverBookingWithoutDate = driver;
 
             DriverBookingWithoutDate.Navigate().GoToUrl(WebsiteURL);
 
@@ -66,14 +68,14 @@ namespace WebDriverFirst
             SubmitBookingButton.Click();
 
             IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Укажите дату')]")));
-            Assert.IsTrue(TestWebSiteResult != null, "Error in BookingWithoutWay");
+            Assert.IsNotNull(TestWebSiteResult, "Error in BookingWithoutWay");
 
         }
 
         [Test, Description("Test is not complete")]
         public void BookingWithoutDestination()
         {
-            DriverBookingWithoutDestination = new ChromeDriver();
+            DriverBookingWithoutDestination = driver;
 
             DriverBookingWithoutDestination.Navigate().GoToUrl(WebsiteURL);
 
@@ -94,14 +96,14 @@ namespace WebDriverFirst
             SubmitBookingButton.Click();
 
             IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Укажите город назначения')]")));
-            Assert.IsTrue(TestWebSiteResult != null, "Error in BookingWithoutDestination");
+            Assert.IsNotNull(TestWebSiteResult, "Error in BookingWithoutDestination");
 
         }
 
         [Test, Description("Test is not complete")]
         public void OneWayReservationToDepartureCity()
         {
-            DriverOneWayReservationToDepartureCity = new ChromeDriver();
+            DriverOneWayReservationToDepartureCity = driver;
 
             DriverOneWayReservationToDepartureCity.Navigate().GoToUrl(WebsiteURL);
 
@@ -125,13 +127,13 @@ namespace WebDriverFirst
             SubmitBookingButton.Click();
 
             IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Не может совпадать с пунктом отправления')]")));
-            Assert.IsTrue(TestWebSiteResult != null, "Error in OneWayReservationToDepartureCity");
+            Assert.IsNotNull(TestWebSiteResult, "Error in OneWayReservationToDepartureCity");
         }
 
         [Test, Description("Test is not complete")]
         public void TwoWayReservationToDepartureCity()
         {
-            DriverTwoWayReservationToDepartureCity = new ChromeDriver();
+            DriverTwoWayReservationToDepartureCity = driver;
 
             DriverTwoWayReservationToDepartureCity.Navigate().GoToUrl(WebsiteURL);
 
@@ -164,20 +166,14 @@ namespace WebDriverFirst
             SubmitBookingButton.Click();
 
             IWebElement TestWebSiteResult = fluentWait.Until(x => x.FindElement(By.XPath("//span[contains(text(),'Не может совпадать с пунктом отправления')]")));
-            Assert.IsTrue(TestWebSiteResult != null, "TwoWayReservationToDepartureCity");
+            Assert.IsNotNull(TestWebSiteResult, "TwoWayReservationToDepartureCity");
         }
 
         [TearDown]
         public void TearDownTest()
         {
-            if (DriverBookingWithoutDate != null)
-                DriverBookingWithoutDate.Quit();
-            if (DriverBookingWithoutDestination != null)
-                DriverBookingWithoutDestination.Quit();
-            if (DriverOneWayReservationToDepartureCity != null)
-                DriverOneWayReservationToDepartureCity.Quit();
-            if (DriverTwoWayReservationToDepartureCity != null)
-                DriverTwoWayReservationToDepartureCity.Quit();
+            if (driver != null)
+                driver.Quit();
             
         }
     }

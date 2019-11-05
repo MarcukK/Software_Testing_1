@@ -40,7 +40,7 @@ namespace PageObject
 
             bookingWithoutDestination
                 .FillFieldFrom("Минск")
-                .SelectDateFrom()
+                .SelectFromDateAsFirstDayNextMonth()
                 .Submit();
 
             Assert.IsTrue(bookingWithoutDestination.CheckErrorLabel(), "Error in BookingWithoutDestination");
@@ -58,7 +58,7 @@ namespace PageObject
             twoWayReservationToDepartureCityPage
                 .FillFieldFrom("Минск")
                 .FillFieldTo("Минск")
-                .SelectDateFrom()
+                .SelectFromDateAsFirstDayNextMonth()
                 .SelectDateTo()
                 .Submit();
 
