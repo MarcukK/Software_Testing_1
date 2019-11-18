@@ -17,6 +17,11 @@ namespace PageObject
         {
             get { return log; }
         }
+        public static void SetLoggerName(string value)
+        {
+            log = LogManager.GetLogger(value);
+        }
+
 
         public static void InitLogger()
         {
