@@ -44,15 +44,10 @@ namespace PageObject
         private readonly IWebElement ArrivalCannotCoincideWithDepartureErrorLabel;
 
         public TwoWayReservationToDepartureCityPage(IWebDriver driver) : base(driver) { }
-        
-        public TwoWayReservationToDepartureCityPage FillFieldFrom(string text)
-        {
-            AirportInputFieldFrom.SendKeys(text);
-            return this;
-        }
 
         public TwoWayReservationToDepartureCityPage FillFields(FlightData flightData)
         {
+            Logger.Log.Info(flightData);
             AirportInputFieldFrom.SendKeys(flightData.getAirportFrom());
             AirportInputFieldTo.SendKeys(flightData.getAirportTo());
             return this;
@@ -60,6 +55,7 @@ namespace PageObject
 
         public TwoWayReservationToDepartureCityPage SelectFromDateAsFirstDayNextMonth()
         {
+            Logger.Log.Info("Selecting from date next month");
             SelectFromDateElement.Click();
             ChangeMonthElement.Click();
             SelectFromDateElementDate.Click();
@@ -69,6 +65,7 @@ namespace PageObject
 
         public TwoWayReservationToDepartureCityPage SelectDateTo()
         {
+            Logger.Log.Info("Selecting date to");
             SelectToDateElement.Click();
             SelectToDateElementDate.Click();
             return this;
@@ -76,12 +73,14 @@ namespace PageObject
 
         public TwoWayReservationToDepartureCityPage Submit()
         {
+            Logger.Log.Info("Submit");
             SubmitBookingButton.Click();
             return this;
         }
 
         public bool CheckErrorLabel()
         {
+            Logger.Log.Info("Check error label");
             return (ArrivalCannotCoincideWithDepartureErrorLabel != null);
         }
     }

@@ -27,19 +27,16 @@ namespace PageObject
             Logger.InitLogger();
             try
             {
-                Logger.Log.Info("Start of method");
-
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl(WebsiteURL);
+
                 BookingWithoutDestination bookingWithoutDestination = new BookingWithoutDestination(driver);
                 FlightData testData = FlightDataCreator.FlightDataFrom();
-
+                
                 bookingWithoutDestination
                     .FillFields(testData)
                     .SelectFromDateAsFirstDayNextMonth()
                     .Submit();
-
-                Logger.Log.Info("End of method");
 
                 Assert.IsTrue(bookingWithoutDestination.CheckErrorLabel(), "Error in BookingWithoutDestination");
             }
@@ -61,17 +58,12 @@ namespace PageObject
             //Logger.SetLoggerName("TwoWayReservationToDepartureCity");
             try
             {
-                Logger.Log.Info("Start of method");
-                
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl(WebsiteURL);
-
-                Logger.Log.Info("Driver navigated");
 
                 TwoWayReservationToDepartureCityPage twoWayReservationToDepartureCityPage = new TwoWayReservationToDepartureCityPage(driver);
                 FlightData testData = FlightDataCreator.FlightDataFromAndTo();
                 testData.setAirportTo(testData.getAirportFrom());
-
 
                 twoWayReservationToDepartureCityPage
                     .FillFields(testData)
@@ -81,7 +73,6 @@ namespace PageObject
                 //int fs = 1, fs2 = 0; // string for explicit error
                 //int fs3 = fs / fs2;
 
-                Logger.Log.Info("End of method");
                 Assert.IsTrue(twoWayReservationToDepartureCityPage.CheckErrorLabel(), "TwoWayReservationToDepartureCity");
 
             }
