@@ -18,15 +18,15 @@ namespace PageObject
         }
         public static FlightData FlightDataFrom()
         {
-            return new FlightData(AIRPORT_FROM, "");
+            return new FlightData(AIRPORT_FROM, " ");
         }
         public static FlightData FlightDataTo()
         {
-            return new FlightData("", AIRPORT_TO);
+            return new FlightData(" ", AIRPORT_TO);
         }
         public static FlightData FlightDataEmpty()
         {
-            return new FlightData("", "");
+            return new FlightData(" ", " ");
         }
 
     }

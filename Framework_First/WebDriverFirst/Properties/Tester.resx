@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="TestAirportFrom" xml:space="preserve">
-    <value>Минск</value>
+    <value>Минск, MSQ</value>
   </data>
   <data name="TestAirportTo" xml:space="preserve">
-    <value>Париж</value>
+    <value>Париж, PAR</value>
   </data>
 </root>

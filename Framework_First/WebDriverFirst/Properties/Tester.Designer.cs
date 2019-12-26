@@ -61,7 +61,7 @@ namespace PageObject.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Минск.
+        ///   Ищет локализованную строку, похожую на Минск, MSQ.
         /// </summary>
         internal static string TestAirportFrom {
             get {
@@ -70,7 +70,7 @@ namespace PageObject.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Париж.
+        ///   Ищет локализованную строку, похожую на Париж, PAR.
         /// </summary>
         internal static string TestAirportTo {
             get {
